@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link " href="{{ url_for('ngoRequestHistory') }}">All Accepted Request</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ url_for('ngoAllAcceptedRequest') }}">All Rejected Request</a>
+          </li>
+        </ul>
+        <h2>Total Accepted Request</h2>
+        <table class="table table-hover">
+        <tr>
+            <td><b>Medicine Name</b></td>
+            <td><b>Quantity</b></td>
+            <td><b>Request Date</b></td>
+            <td><b>See Details</b></td>
+        </tr>
+        {% for request in requests %}
+        <tr class="table-success">
+            <td>{{ request.medicine_name }}</td>
+            <td>{{ request.quantity }}</td>
+            <td>{{ request.request_date }}</td>
+            <td><a class="btn btn-outline-primary" href="{{ url_for('ngoRequestHistoryDetail',req_id=request.id) }}" role="button">See Details</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock content %}

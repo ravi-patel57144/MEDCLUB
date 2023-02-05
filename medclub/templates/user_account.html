@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+    <h1>User Account Detail</h1>
+    <table class="table table-hover">
+        <tr>
+            <td>First Name</td>
+            <td>{{ user.fname }}</td>
+        </tr>
+            <td>Last Name</td>
+            <td>{{ user.lname }}</td>
+        </tr>
+        <tr>
+            <td>Email Id</td>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <td>Mobile No</td>
+            <td>{{ user.mobile }}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>{{ user.address }}</td>
+        </tr>
+
+    </table>
+    </div>
+{% endblock content %}

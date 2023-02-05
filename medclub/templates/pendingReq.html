@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Pending Request</h1>
+
+    <table class="table table-hover">
+        <tr>
+            <td><b>Medicine Name</b></td>
+            <td><b>Quantity</b></td>
+            <td><b>Doctor</b></td>
+            <td><b>See Details</b></td>
+        </tr>
+        {% for request in requests %}
+        <tr>
+            <td>{{ request.medicine_name }}</td>
+            <td>{{ request.quantity }}</td>
+            <td>{{ request.doctor_name }}</td>
+            <td><a class="btn btn-primary" href="{{ url_for('reqDetails',req_id=request.id) }}" role="button">See Details</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

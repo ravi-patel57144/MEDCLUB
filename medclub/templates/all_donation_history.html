@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ url_for('donationHistory') }}">All Donation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('allAcceptedDonation') }}">All Accepted Donation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('allPendingDonation') }}">All Pending Donation</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link " href="{{ url_for('allRejectedDonation') }}">All Rejected Donation</a>
+          </li>
+        </ul>
+        <h2>Total Donation</h2>
+        <table class="table table-hover">
+        <tr>
+            <td><b>Medicine Name</b></td>
+            <td><b>Quantity</b></td>
+            <td><b>Donation Date</b></td>
+            <td><b>See Details</b></td>
+        </tr>
+        {% for donate in donations %}
+        <tr {% if donate.accepted %}
+            class="table-success"
+            {% elif donate.rejected %}
+            class="table-danger"
+            {% elif not donate.rejected and not donate.accepted %}
+            class="table-warning"
+            {% else %}
+            class="table-info"
+        {% endif %}>
+            <td>{{ donate.medicine_name }}</td>
+            <td>{{ donate.quantity }}</td>
+            <td>{{ donate.donation_date }}</td>
+            <td><a class="btn btn-outline-primary" href="{{ url_for('donationHistoryDetail',don_id=donate.id) }}" role="button">See Details</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock content %}

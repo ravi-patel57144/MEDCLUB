@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+    <h1>User Account Detail</h1>
+    <table class="table table-hover">
+        <tr>
+            <td>NGO Name</td>
+            <td>{{ ngo.ngo_name }}</td>
+        </tr>
+            <td>Owner Name</td>
+            <td>{{ ngo.owner_name }}</td>
+        </tr>
+        <tr>
+            <td>Email Id</td>
+            <td>{{ ngo.email }}</td>
+        </tr>
+        <tr>
+            <td>Mobile No</td>
+            <td>{{ ngo.mobile }}</td>
+        </tr>
+        <tr>
+            <td>Mobile No</td>
+            <td>{{ ngo.address }}</td>
+        </tr>
+    </table>
+    </div>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        
+        <h2>Activated Users</h2>
+        <table class="table table-hover">
+        <tr>
+            <td><b>Name</b></td>
+            <td><b>Mobile Number</b></td>
+            <td><b>Email Id</b></td>
+            <td><b>Address</b></td>
+            <td><b>Block</b></td>
+        </tr>
+        {% for user in users %}
+        <tr class="table-success">
+            <td>{{ user.fname }} &nbsp; {{ user.lname }}</td>
+            <td>{{ user.mobile }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.address }}</td>
+            <td><a class="btn btn-outline-danger" href="{{ url_for('blockingUser',user_id=user.id) }}" role="button">Block User</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock content %}

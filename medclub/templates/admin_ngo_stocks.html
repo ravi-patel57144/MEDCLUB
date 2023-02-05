@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <center>
+    
+    <h2> NGO Stocks</h2>
+    <table class="table table-hover">
+        <tr>
+            <td colspan="3">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select NGO
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/admin_dashboard/ngo_stocks">All</a>
+                    {% for ngo in ngos %}
+                        <a class="dropdown-item" href="/admin_dashboard/ngo_stocks?ngo_id={{ ngo.id }}&ngo_name={{ ngo.ngo_name }}">{{ ngo.ngo_name }}</a>
+                    {% endfor %}
+                    </div>
+                </div>
+                <h3>Showing Result For : 
+                    {% if ngo_name %}
+                        {{ ngo_name }}
+                    {% else %}
+                        ALL
+                    {% endif %}
+                </h3>
+            </td>
+        </tr>
+        <tr>
+            <td><b>NGO Name</b></td>
+            <td><b>Medicine</b></td>
+            <td><b>Quantity</b></td>
+        </tr>
+        {% for stock in stocks %}
+        <tr class="table-success">
+            <td>{{ stock.ngo_name }}</td>
+            <td>{{ stock.medicine_name }}</td>
+            <td>{{ stock.quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    </center>
+</div>
+{% endblock content %}

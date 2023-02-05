@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+    <h1>Not Approved Users List</h1>
+     <table class="table table-hover">
+        <tr>
+            <td><b>User Full Name</b></td>
+            <td><b>Address</b></td>
+            <td><b>Email Id</b></td>
+            <td><b>Mobile Number</b></td>
+            <td><b>Accept/Reject</b></td>
+        </tr>
+         {% for user in users %}
+            <tr>
+                <td>{{ user.fname }} &nbsp; {{ user.lname }}</td>
+                <td>{{ user.address }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.mobile }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ url_for('userAccountApproved',user_id=user.id) }}" role="button">Accept</a>
+                    <a class="btn btn-danger" href="{{ url_for('userAccountRejected',user_id=user.id) }}" role="button">Reject</a>
+                </td>
+            </tr>
+         {% endfor %}
+
+     </table>
+    </div>
+{% endblock %}

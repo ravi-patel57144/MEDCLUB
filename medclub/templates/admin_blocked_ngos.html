@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        
+        <h2>Blocked NGOS</h2>
+        <table class="table table-hover">
+        <tr>
+            <td><b>NGO Name</b></td>
+            <td><b>NGO Owner</b></td>
+            <td><b>Mobile Number</b></td>
+            <td><b>Email Id</b></td>
+            <td><b>Address</b></td>
+            <td><b>Un-Block</b></td>
+        </tr>
+        {% for ngo in ngos %}
+        <tr class="table-danger">
+            <td>{{ ngo.ngo_name }}</td>
+            <td>{{ ngo.owner_name }}</td>
+            <td>{{ ngo.mobile }}</td>
+            <td>{{ ngo.email }}</td>
+            <td>{{ ngo.address }}</td>
+            <td><a class="btn btn-outline-success" href="{{ url_for('unblockingNgo',ngo_id=ngo.id) }}" role="button">UnBlock</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock content %}

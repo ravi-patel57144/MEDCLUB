@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+{#    <h1>User Dashboard</h1>#}
+   <div class="jumbotron">
+    <h1>Welcome {{ name }}</h1>
+    </div>
+    <div class="wrapper">
+         <div class="container-fluid" >
+             <div class="row" style="margin: 0 auto;">
+                  <div id="test" class="text-center alert-primary col-md-2 ml-4">
+                    <p style="font-size: xx-large">Total Donation:{{ info[0] }}</p>
+                  </div>
+                  <div id="test" class="text-center alert-info col-md-2 ml-5">
+                    <p style="font-size: xx-large">Total Successful Donation:{{ info[1] }}</p>
+                 </div>
+                  <div id="test" class="text-center alert-info col-md-2 ml-5">
+                    <p style="font-size: xx-large">Total Pending Donation:{{ info[2] }}</p>
+                 </div>
+                  <div id="test" class="text-center alert-info col-md-2 ml-5">
+                    <p style="font-size: xx-large">Total Rejected Donation:{{ info[3] }}</p>
+                 </div>
+                  <div id="test" class="text-center alert-info col-md-2 ml-5">
+                      <p style="font-size: xx-large">Total Delivered Donation:{{ info[8] }}</p>
+                  </div>
+             </div>
+             <div class="row mt-3" style="margin: 0 auto;">
+                 <div id="test" class="text-center alert-primary col-md-2 ml-4">
+                    <p style="font-size: xx-large">Total Request:{{ info[4] }}</p>
+                 </div>
+                 <div id="test" class="text-center alert-info col-md-2 ml-5">
+                    <p style="font-size: xx-large">Total Successful Request:{{ info[5] }}</p>
+                 </div>
+                 <div id="test" class="text-center alert-info col-md-2 ml-5">
+                    <p style="font-size: xx-large">Total Pending Request:{{ info[6] }}</p>
+                 </div>
+                 <div id="test" class="text-center alert-info col-md-2 ml-5">
+                    <p style="font-size: xx-large">Total Rejected Request:{{ info[7] }}</p>
+                 </div>
+                 <div id="test" class="text-center alert-info col-md-2 ml-5">
+                    <p style="font-size: xx-large">Total Delivered Request:{{ info[9] }}</p>
+                 </div>
+             </div>
+         </div>
+    </div>
+{% endblock content %}

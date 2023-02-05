@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Med Club</title>
+      <style>
+          #test {
+      padding: 70px 0;
+      border-radius: 10%;
+      border: 3px solid lightblue;
+      text-align: center;
+    }
+      </style>
+      <link rel="icon" href="{{ url_for('static',filename="images/logo.gif") }}" type="image/gif" sizes="16x16">
+  </head>
+  <body>
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+      <a class="navbar-brand" href="/">
+	  <img style="max-width:220px; margin-top: -5px;" src="{{ url_for('static', filename='images/main.png') }}">
+	  </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        {% if type=="user" %}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('udash') }}">Dashboard</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ url_for('userAccount') }}">Account <span class="sr-only"></span></a>
+          </li>
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              View Transaction
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('donationHistory') }}">Donation History</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ url_for('requestHistory') }}">Request History</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('donate') }}">Donate</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('request') }}">Request</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('userlogout') }}">Logout</a>
+          </li>
+        </ul>
+            </div>
+        {% elif type=="ngo" %}
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('ndash') }}">Dashboard</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('ngoAccount') }}">Account <span class="sr-only"></span></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            View Transaction
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <a class="dropdown-item" href="{{ url_for('ngoDonationHistory') }}">Donation History</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ url_for('ngoRequestHistory') }}">Request History</a>
+                    </div>
+                </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('pendingRequest') }}">Medicine Request</a>
+                  </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('pendingDonationRequest') }}">Donation Request</a>
+                  </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('ngologout') }}">Logout</a>
+                  </li>
+                </ul>
+            </div>
+            {% elif type=="admin" %}
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('adminDashBoard') }}">Dashboard</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('ngoStocks') }}">Stocks <span class="sr-only"></span></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account Approval
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <a class="dropdown-item" href="{{ url_for('notApprovedUsers') }}">User Accounts</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ url_for('notApprovedNgos') }}">NGO Accounts</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         USERS
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <a class="dropdown-item" href="{{ url_for('activatedUser') }}">Activated</a>
+                          <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{{ url_for('blockedUser') }}">Blocked</a>
+                  </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       NGO'S
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                     <a class="dropdown-item" href="{{ url_for('activatedNgo') }}">Activated</a>
+                        <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url_for('blockedNgo') }}">Blocked</a>
+                </div>
+            </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('adminlogout') }}">Logout</a>
+                  </li>
+                </ul>
+            </div>
+        {% else %}
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+          </li>
+                <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Do LOGIN !!!
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('ulogin') }}">User Login</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ url_for('nlogin') }}">NGO Login</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Do REGISTRATION !!!
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('ureg') }}">User Registration</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ url_for('nreg') }}">NGO Registration</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+            {% endif %}
+    </nav>
+        <main role="main" class="container">
+        <div class="row">
+        <div class="col-md-12">
+        {% with messages =get_flashed_messages(with_categories=true) %}
+            {% if messages  %}
+                {% for category,message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        </div>
+
+        </div>
+        </main>
+        {% block content %}{% endblock %}
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+        <div style="height: 50px; width: 100%;"></div>
+ <footer style="position:fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #5df8e7;
+   color: #0e0d0d;
+   text-align: center;">
+  <div class="container">
+      Total Users : {{ user }}
+      Total Ngo   : {{ ngo }}
+      <br>
+      <p>All rights reserved to @MedClub</p>
+  </div>
+
+</footer>
+  </body>
+</html>

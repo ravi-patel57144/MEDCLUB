@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+    <h1>Not Approved NGO'S List</h1>
+     <table class="table table-hover">
+        <tr>
+            <td><b>User Full Name</b></td>
+            <td><b>Address</b></td>
+            <td><b>Email Id</b></td>
+            <td><b>Mobile Number</b></td>
+            <td><b>More Details</b></td>
+        </tr>
+         {% for ngo in ngos %}
+            <tr>
+                <td>{{ ngo.ngo_name }} &nbsp; {{ user.lname }}</td>
+                <td>{{ ngo.owner_name }}</td>
+                <td>{{ ngo.email }}</td>
+                <td>{{ ngo.mobile }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ url_for('adminNgoAccDetails',ngo_id=ngo.id) }}" role="button">More Details</a>
+                </td>
+            </tr>
+         {% endfor %}
+
+     </table>
+    </div>
+{% endblock %}

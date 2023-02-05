@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <center><h1>NGO Donation History Detail</h1></center>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover">
+                    <tr>
+                        <td>
+                            <b>Medicine Name :</b>
+                        </td>
+                        <td>
+                            {{ donation.medicine_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Quantity :</b>
+                        </td>
+                        <td>
+                            {{ donation.quantity }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Donate Date :</b>
+                        </td>
+                        <td>
+                            {{ donation.donation_date }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b> Donated To :</b>
+                        </td>
+                        <td>
+                            {{ user.id }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b> Ngo Mobile Number :</b>
+                        </td>
+                        <td>
+                            {{ user.mobile }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b> Ngo Email Id :</b>
+                        </td>
+                        <td>
+                            {{ user.email }}
+                        </td>
+                    </tr>
+                    {% if reject %}
+                        <tr>
+                            <td colspan="2"><h6></h6></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><center><h6 style="color: darkred">Rejected By You</h6></center></td>
+                        </tr>
+                    <tr>
+                        <td>
+                            Reason:
+                        </td>
+                        <td>
+                            {{ donation.comment }}
+                        </td>
+                    </tr>
+
+                        {% elif pending %}
+                        <tr>
+                            <td colspan="2"><h6></h6></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><center><h6 style="color: yellow">Pending</h6></center></td>
+                        </tr>
+
+                        {% else %}
+                            <tr>
+                                <td colspan="2"><h6></h6></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><center><h6 style="color: green">Accepted By You</h6></center></td>
+                            </tr>
+                    {% endif %}
+
+
+                </table>
+            {% if pending %}
+                 <a class="btn btn-success" href="{{ url_for('acceptPendingReq',don_id=donation.id) }}" role="button">Accept</a>
+                <a class="btn btn-danger" href="{{ url_for('rejectDonation',don_id=donation.id) }}" role="button">Reject</a>
+            {% endif %}
+            </div>
+        <div class="col-md-6">
+            <img src="{{ url_for('static',filename='medicine_img/' + donation.medicine_img) }}" style="height: 90%; width: 90%; border: dashed">
+        </div>
+    </div>
+    </div>
+        <br>
+    <div class="container">
+        <a class="btn btn-success" href="{{ url_for('donationHistory') }}" role="button">Back To Donate History</a>
+    </div>
+{% endblock content %}

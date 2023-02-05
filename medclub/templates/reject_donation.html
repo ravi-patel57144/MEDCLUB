@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h1>Reject Donation</h1>
+    <h6>Give Valid reason for rejection</h6>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Rejection Form</legend>
+            <div class="form-group">
+                    {{ form.comment.label(class="form-control-label") }}
+                    {% if form.comment.errorfnames %}
+                        {{ form.address(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.comment.errors %}
+                                <span>{{ error  }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.comment(class="form-control form-control-lg") }}
+                    {% endif %}
+            </div>
+
+        </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-danger") }}
+    </div>
+    </form>
+</div>
+{% endblock content %}

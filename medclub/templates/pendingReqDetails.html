@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Pending Request Details</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover">
+                    <tr>
+                        <td>
+                            <b>Medicine Name :</b>
+                        </td>
+                        <td>
+                            {{ donation.medicine_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Quantity :</b>
+                        </td>
+                        <td>
+                            {{ donation.quantity }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Donate Date :</b>
+                        </td>
+                        <td>
+                            {{ donation.donation_date }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Donater name :</b>
+                        </td>
+                        <td>
+                            {{ user.fname }} &nbsp; {{ user.lname }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Donater Email Id</b>
+                        </td>
+                        <td>
+                            {{ user.email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Donater Mobile Number</b>
+                        </td>
+                        <td>
+                            {{ user.mobile }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Donater Address</b>
+                        </td>
+                        <td>
+                            {{ user.address }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <img src="{{ url_for('static',filename='medicine_img/' + donation.medicine_img) }}" style="height: 90%; width: 90%; border: dashed;">
+            </div>
+        </div>
+    </div>
+        <br>
+    <div class="container">
+        <a class="btn btn-success" href="{{ url_for('acceptPendingReq',don_id=donation.id) }}" role="button">Accept</a>
+     <a class="btn btn-danger" href="{{ url_for('rejectDonation',don_id=donation.id) }}" role="button">Reject</a>
+    </div>
+
+{% endblock content %}

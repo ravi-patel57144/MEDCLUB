@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+    {% if request.rejected %}
+            <h2 style="color: darkred"><center>Rejected Request</center></h2>
+        {% elif request.accepted %}
+            <h2 style="color: green"><center>Accepted Request</center></h2>
+        {% else %}
+            <h2 style="color: yellow"><center>Pending Request</center></h2>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover">
+                    <tr>
+                        <td>
+                            <b>Medicine Name :</b>
+                        </td>
+                        <td>
+                            {{ request.medicine_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Quantity :</b>
+                        </td>
+                        <td>
+                            {{ request.quantity }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Donate Date :</b>
+                        </td>
+                        <td>
+                            {{ request.request_date }}
+                        </td>
+                    </tr>
+                    {% if ngo %}
+                    <tr>
+                        <td>
+                            <b> Donated By :</b>
+                        </td>
+                        <td>
+                                {{ ngo.id }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b> Ngo Mobile Number :</b>
+                        </td>
+                        <td>
+                                {{ ngo.mobile }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b> Ngo Email Id :</b>
+                        </td>
+                         <td>
+                                {{ ngo.email }}
+                        </td>
+                    </tr>
+                        {% elif request.rejected %}
+                        <tr>
+                            <td colspan="2"><h6></h6></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><center><h6 style="color: darkred">Rejected</h6></center></td>
+                        </tr>
+                        <tr>
+                            <td><b>Reason: </b></td>
+                            <td>{{ request.comment }}</td>
+                        </tr>
+                        <tr>
+                            <td>Rejected By</td>
+                            <td>{{ reject_by.ngo_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>NGO Mobile Number</td>
+                            <td>{{ reject_by.mobile }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><a class="btn btn-info" href="{{ url_for('refillRequest',req_id=request.id) }}" role="button">Refill Request Form</a></td>
+                        </tr>
+                    {% else %}
+                        <td colspan="2">
+                            <center>
+                                <h6 style="color: darkred">Not Accepted Yet. Request Will Accepted Soon</h6>
+                            </center>
+                        </td>
+                    {% endif %}
+                </table>
+            </div>
+        <div class="col-md-6">
+            <img src="{{ url_for('static',filename='presc/' + request.prescription) }}" style="height: 90%; width: 90%; border: dashed">
+        </div>
+    </div>
+    </div>
+        <br>
+    <div class="container">
+        <a class="btn btn-success" href="{{ url_for('requestHistory') }}" role="button">Back To Request History</a>
+    </div>
+{% endblock content %}

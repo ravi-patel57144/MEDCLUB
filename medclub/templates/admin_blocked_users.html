@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        
+        <h2>Blocked Users</h2>
+        <table class="table table-hover">
+        <tr>
+            <td><b>Name</b></td>
+            <td><b>Mobile Number</b></td>
+            <td><b>Email Id</b></td>
+            <td><b>Address</b></td>
+            <td><b>Un-Block</b></td>
+        </tr>
+        {% for user in users %}
+        <tr class="table-danger">
+            <td>{{ user.fname }} &nbsp; {{ user.lname }}</td>
+            <td>{{ user.mobile }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.address }}</td>
+            <td><a class="btn btn-outline-success" href="{{ url_for('unblockingUser',user_id=user.id) }}" role="button">Un-Block</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock content %}

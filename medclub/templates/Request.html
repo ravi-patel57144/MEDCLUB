@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Request Page</h1><br>
+    <div class="container">
+        <form method="Post" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Request Medicine</legend>
+                <div class="form-group">
+                    {{ form.medicine_name.label(class="form-control-label") }}
+                    {% if form.medicine_name.errorfnames %}
+                        {{ form.medicine_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.medicine_name.errors %}
+                                <span>{{ error  }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.medicine_name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.quantity.label(class="form-control-label") }}
+                    {% if form.quantity.errors %}
+                        {{ form.quantity(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.quantity.errors %}
+                                <span>{{ error  }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.quantity(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.doctor_name.label(class="form-control-label") }}
+                    {% if form.doctor_name.errorfnames %}
+                        {{ form.doctor_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.doctor_name.errors %}
+                                <span>{{ error  }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.doctor_name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                     {{ form.prescription.label() }}
+                    {{ form.prescription(class="form-control-file") }}
+                    {% if form.prescription.errors %}
+                        {% for error in form.prescription.errors %}
+                                <span class="text-danger">{{ error  }}</span><br>
+                            {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.warning(class="form-check-input") }}
+                    {{ form.warning.label(class="form-check-label") }} <a href="{{ url_for('terms') }}" target="_blank">Terms and Conditions</a>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+
+    </div>
+    
+{% endblock content %}

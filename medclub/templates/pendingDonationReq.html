@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1>Pending Donation Request Details</h1>
+    <div class="container">
+        <table class="table table-hover">
+            <tr>
+                <td><b>Medicine Name :</b></td>
+                <td><b>Quantity :</b></td>
+                <td><b>Donation Date :</b></td>
+                <td><b>See More details</b></td>
+            </tr>
+            {% for donation in donations %}
+                <tr>
+                    <td>{{ donation.medicine_name }}</td>
+                    <td>{{ donation.quantity }}</td>
+                    <td>{{ donation.donation_date }}</td>
+                    <td><a class="btn btn-info" href="{{ url_for('pendingDonationDetails',don_id=donation.id) }}" role="button">See Details</a></td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <h1>Ngo Account Details</h1>
+         <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover">
+                    <tr>
+                        <td>Ngo Name</td>
+                        <td>{{ ngo.ngo_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Owner Name</td>
+                        <td>{{ ngo.owner_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ ngo.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile</td>
+                        <td>{{ ngo.mobile }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>{{ ngo.address }}</td>
+                    </tr>
+                </table>
+            </div>
+             <div class="col-md-6">
+                 <img src="{{ url_for('static',filename='profile/' + ngo.upload_verified_doc) }}" style="height: 90%; width: 90%; border: dashed">
+             </div>
+             <a class="btn btn-success" href="{{ url_for('ngoAccountApproved',ngo_id=ngo.id) }}" role="button">Accept</a>
+             <a class="btn btn-danger" href="{{ url_for('ngoAccountRejected',ngo_id=ngo.id) }}" role="button">Reject</a>
+         </div>
+    </div>
+{% endblock %}
